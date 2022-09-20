@@ -1,0 +1,79 @@
+.eye {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100% 0% 100% 0% / 100% 25% 100% 0%;
+    background-color: #fff;
+    border: 5px solid black;
+    transform: rotate(45deg);
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+
+    &::after {
+        content: "";
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0px;
+        border-radius: 100% 0% 75% 0% / 100% 0% 75% 0%;
+        background-color: #fff0;
+        border: 5px solid black;
+        width: 100%;
+        height: 100%;
+        animation: close-eye 3s ease 1 forwards 2s;
+        z-index: 1;
+        outline: 210px solid #fff;
+        
+    }
+    &::before {
+        $dark-color: rgb(74, 74, 74);
+        $eye-conic-gradient: ();
+        @for $i from 0 to 20 {
+            $persent : $i * 5%;
+            $colored-segment : $dark-color $persent $persent + 1%;
+            $transparent-segment : #0000 $persent + 1% $persent + 5%;
+            $eye-conic-gradient: append($eye-conic-gradient, $colored-segment, $separator: comma);
+            $eye-conic-gradient: append($eye-conic-gradient, $transparent-segment, $separator: comma);
+        }
+
+        content: "";
+        display: block;
+        position: absolute;
+        width: 65%;
+        height: 65%;
+        border: 4px solid black;
+        background-image: radial-gradient(black 0% 20%, rgba(105, 105, 105, .5), rgba(160, 160, 160, .94) 50%),
+                            conic-gradient(
+                                $eye-conic-gradient
+                            );
+                            
+        border-radius: 50%;
+        top: 20%;
+        left: 20%;
+        z-index: 0;
+        animation: look-around 2s ease 1;
+        transform: none;
+    }
+}
+
+@keyframes close-eye {
+    100% {
+        top: 50%;
+        left: 50%;
+        border-radius: 100% 0% 100% 0% / 100% 0% 100% 0%;
+    }
+}
+@keyframes look-around {
+    30% {
+        transform: translateX(25%) translateY(-25%);      
+    }
+    70% {
+        transform: translateX(-25%) translateY(25%);
+    }
+    100% {
+        transform: none;
+    }
+}
