@@ -532,7 +532,7 @@ body form .input-group * {
 body form .input-group span {
   background-color: rgb(220, 220, 220);
 }
-body form input[type=radio],
+body form input#password-length-field,
 body form button {
   display: flex;
   border: 2px solid black;
@@ -540,7 +540,7 @@ body form button {
   height: 5em;
   background-image: conic-gradient(rgba(0, 0, 0, 0.0666666667), rgba(0, 0, 0, 0.0666666667));
 }
-body form input[type=radio]::after,
+body form input#password-length-field::after,
 body form button::after {
   content: attr(data-length);
   display: flex;
@@ -551,9 +551,23 @@ body form button::after {
   height: 100%;
   font-size: 2em;
 }
-body form input[type=radio]:hover,
-body form button:hover {
+body form input#password-length-field:not(#password-length-field):hover,
+body form button:not(#password-length-field):hover {
   animation: radial-loading-hover-animation 1s linear 1 both;
+}
+body form input#password-length-field#password-length-field,
+body form button#password-length-field {
+  -webkit-appearance: textfield;
+  background-color: rgba(84, 170, 240, 0.2);
+  border-radius: 0.3em;
+  padding: 0 0.2em;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 2.5em;
+}
+body form input#password-length-field#password-length-field::-webkit-inner-spin-button,
+body form button#password-length-field::-webkit-inner-spin-button {
+  width: 0.5em;
 }
 body form button[type=submit] {
   height: 4em;
@@ -592,7 +606,7 @@ body form #password-number-symbols-setttings div.input-group > * {
   background-image: linear-gradient(rgba(84, 170, 240, 0.2), rgba(84, 170, 240, 0.2));
   border: 2px solid rgb(79, 79, 79);
 }
-body form #password-number-symbols-setttings div.input-group > *:not(span) {
+body form #password-number-symbols-setttings div.input-group span {
   background-image: none;
 }
 body form #password-symbols-settings {
