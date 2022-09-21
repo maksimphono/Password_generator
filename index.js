@@ -50,7 +50,7 @@ function clonePasswordSymbolsHTMLElements(passwordLength = PASSWORD_MIN_LEN) {
         $("#password-symbols-settings").append(passwordSymbolDivHTML);
     }
 }
-
+// qwertyuiolkjnhbgfvdaswcdvfbgnhmjnjhgbfdvsazxzdcvfbgnhmj
 $(document).ready(() => {
     $("button[type=submit]").click(function (e) {
         e.preventDefault();
