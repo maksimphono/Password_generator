@@ -609,6 +609,26 @@ body form #password-number-symbols-setttings div.input-group > * {
 body form #password-number-symbols-setttings div.input-group span {
   background-image: none;
 }
+body form #password-number-symbols-setttings div.input-group::before {
+  content: attr(title);
+  display: flex;
+  justify-content: center;
+  padding: 0 0.4em;
+  position: absolute;
+  color: #fff;
+  min-width: max-content;
+  height: 2em;
+  background-color: #000;
+  border-radius: 0.3em;
+  top: 0.25em;
+  right: 102%;
+  margin-right: 2px;
+  opacity: 0;
+  transition: 0.5s;
+}
+body form #password-number-symbols-setttings div.input-group:hover::before {
+  opacity: 1;
+}
 body form #password-symbols-settings {
   position: relative;
   width: max-content;

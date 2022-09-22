@@ -138,6 +138,7 @@ body {
             flex-direction: column;
             width: 100%;
             height: max-content;
+            
             div.input-group {
                 margin: 0;
                 position: relative;
@@ -153,6 +154,29 @@ body {
                 }
                 span {
                     background-image: none;
+                }
+                &::before {
+                    $width: max-content;
+                    content: attr(title);
+                    display: flex;
+                    justify-content: center;
+                    padding: 0 .4em;
+                    position: absolute;
+                    color: #fff;
+                    min-width: max-content;
+                    height: 2em;
+                    background-color: #000;
+                    border-radius: .3em;
+                    top: .25em;
+                    right: 102%;
+                    margin-right: 2px;
+                    opacity: 0;
+                    transition: .5s;
+                }
+                &:hover {
+                    &::before {
+                        opacity: 1;
+                    }
                 }
             }
         }
