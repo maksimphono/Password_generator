@@ -1,5 +1,32 @@
-function generateRandomSymbol(args) {
-    return 0;
+function randInt(a, b) {
+    return 0 | (Math.random() * (b -a) + a);
+}
+
+const asciiChar = code => String.fromCharCode(code);
+
+function randIntLetter() {
+    return [asciiChar(randInt(65, 90)), asciiChar(randInt(97, 122))][Math.round(Math.random())];
+}
+function randIntNumber() {
+    return randInt(0, 9);
+}
+function randIntSym() {
+    return [asciiChar(randInt(33, 46)), asciiChar(randInt(58, 63))][Math.round(Math.random())];
+}
+
+function generaterandIntChar(args = [1, 1, 1]) {
+    let result = [];
+    let randIndx = 0;
+    
+    while (!args[randIndx]) {
+        randIndx = (randIndx + 1) % 3;
+    }
+    
+    switch (randIndx) {
+        case 0: return randIntLetter();
+        case 1: return randIntNumber();
+        case 2: return randIntSym();
+    }
 }
 
 function generatePassword({ passwordRangeSettings, defaultGenerate} = { passwordRangeSettings : undefined, defaultGenerate : true}) {
@@ -7,10 +34,10 @@ function generatePassword({ passwordRangeSettings, defaultGenerate} = { password
     
     if (defaultGenerate) {
         for (let i = 0; i < passwordLength; i++) {
-            return 0;
+            outputPassword.push(generaterandIntChar());
         }
     }
-    
+    return outputPassword;
 }
 
 // ***
@@ -20,12 +47,13 @@ function submitForm(btn) {
     
     console.log(btn.name);
     console.log(btn.form);
-    if (btn.name === "password-number-symbols-setttings") {
-        generatePassword({ passwordRangeSettings : passwordRangeSettings, defaultGenerate : false});
-    } else {
-        generatePassword({ passwordRangeSettings : undefined, defaultGenerate : false});
-    }
-    return 0;
+    //console.log(generatePassword().join(" "));
+    //if (btn.name === "password-number-symbols-setttings") {
+      //  generatePassword({ passwordRangeSettings : passwordRangeSettings, defaultGenerate : false});
+    //} else {
+      //  generatePassword({ passwordRangeSettings : undefined, defaultGenerate : false});
+    //}
+    //return 0;
 };
 
 const PASSWORD_MIN_LEN = 4;
