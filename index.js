@@ -4,37 +4,77 @@ function randInt(a, b) {
 
 const asciiChar = code => String.fromCharCode(code);
 
-function randIntLetter() {
+function randomLetter() {
     return [asciiChar(randInt(65, 90)), asciiChar(randInt(97, 122))][Math.round(Math.random())];
 }
-function randIntNumber() {
+function randomNumber() {
     return randInt(0, 9);
 }
-function randIntSym() {
+function randomSym() {
     return [asciiChar(randInt(33, 46)), asciiChar(randInt(58, 63))][Math.round(Math.random())];
 }
 
-function generaterandIntChar(args = [1, 1, 1]) {
+function generateRandomChar(args = [1, 1, 1]) {
     let result = [];
     let randIndx = 0;
-    
-    while (!args[randIndx]) {
-        randIndx = (randIndx + 1) % 3;
-    }
+    //let func = [];
+
+    do {
+        randIndx = randInt(0, 3);
+        console.log("random Int:", randIndx);
+    } while (!args[randIndx] && !args.every(v => !v));
     
     switch (randIndx) {
-        case 0: return randIntLetter();
-        case 1: return randIntNumber();
-        case 2: return randIntSym();
+        case 0: return randomLetter();
+        case 1: return randomNumber();
+        case 2: return randomSym();
     }
 }
 
 function generatePassword({ passwordRangeSettings, defaultGenerate} = { passwordRangeSettings : undefined, defaultGenerate : true}) {
     const outputPassword = [];
-    
+    let generatedSymbols = [];
+    let generatedSym = null;
+    let indx = 0;
+    let params = [0, 0, 0];
+
     if (defaultGenerate) {
         for (let i = 0; i < passwordLength; i++) {
-            outputPassword.push(generaterandIntChar());
+            outputPassword.push(generateRandomChar());
+        }
+    } else if (!!passwordRangeSettings) {
+        console.log("Generaete MIx fun");
+        outputPassword.length = passwordLength;
+        for (let name in passwordRangeSettings.names) {
+            generatedSymbols.length = 0;
+            for (let i = 0; i < passwordRangeSettings.names[name]; i++) {
+                //gemerateRandom = {"number-range-let" : randomLetter, randomNumber, randomSym}[];
+                switch (name) {
+                    case "number-range-let": generatedSym = randomLetter(); break;
+                    case "number-range-num": generatedSym = randomNumber(); break;
+                    case "number-range-sym": generatedSym = randomSym(); break;
+                }
+                indx = randInt(0, passwordLength);
+                while (outputPassword[indx]) {
+                    indx = (indx + 1) % passwordLength;
+                }
+                outputPassword[indx] = generatedSym;
+            }
+        }
+    } else {
+        let names = ["Letter", "Number", "Symbol"];
+        //console.log($($("#password-symbols-settings")).find(`input[name="Number"]`));
+                
+        for (let char of $("#password-symbols-settings").children()) {
+            params = [1, 1, 1];
+            for (let i = 0; i < 3; i++) {
+                if (!$(char).find(`input[name='${names[i]}']`).prop("checked")) {
+                    params[i] = 0;
+                }
+            }
+            //console.log(params);
+            
+            outputPassword.push(generateRandomChar(params));
         }
     }
     return outputPassword;
@@ -44,16 +84,22 @@ function generatePassword({ passwordRangeSettings, defaultGenerate} = { password
 
 function submitForm(btn) {
     const form = btn.form;
-    
+    let outputPassword = "";
+
     console.log(btn.name);
     console.log(btn.form);
-    //console.log(generatePassword().join(" "));
-    //if (btn.name === "password-number-symbols-setttings") {
-      //  generatePassword({ passwordRangeSettings : passwordRangeSettings, defaultGenerate : false});
-    //} else {
-      //  generatePassword({ passwordRangeSettings : undefined, defaultGenerate : false});
-    //}
-    //return 0;
+    
+    // complete \/
+    
+    if (0){//btn.name === "password-number-symbols-setttings") {
+        console.log("generate mix");
+        outputPassword = generatePassword({ passwordRangeSettings : passwordRangeSettings, defaultGenerate : false});
+    } else {
+        outputPassword = generatePassword({ passwordRangeSettings : undefined, defaultGenerate : false});
+        console.log(outputPassword);
+    }
+    $("#password-output").text(outputPassword.join(''));
+    return 0;
 };
 
 const PASSWORD_MIN_LEN = 4;

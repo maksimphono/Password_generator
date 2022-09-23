@@ -1,1 +1,1 @@
-console.log(String.fromCharCode(47));
+function f(arg = [])
