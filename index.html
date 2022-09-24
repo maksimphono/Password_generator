@@ -11,18 +11,10 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-    <script src="index.js" defer></script>
+    <script src="index.js" type="module"></script>
     
 </head>
-<!-- qawezsrlmo,mklnojmkniojbuihjunokkb
-lmknubgvtubhjknlijknk
-jkbhvgufygnjbhdcn jefwd
-qawezsrlmo,mklnojmkniojbuihjunokkb
-lmknubgvtubhjknlijknk
-jkbhvgufygnjbhdcn jefwd
-qawezsrlmo,mklnojmkniojbuihjunokkb
-lmknubgvtubhjknlijknk
-jkbhvgufygnjbhdcn jefwd -->
+
 <body class="container-fluid">
     <canvas class="main-background" style="height: 200vh;"></canvas>
     <h1 class="mt-5">Password generator</h1>
@@ -47,7 +39,7 @@ jkbhvgufygnjbhdcn jefwd -->
                     </svg>
                 </span>
                 <input name="number-range-let" class="input-group-text" val="10" style="width: 3em; font-weight: bold;" onchange="sliderMove(this)">
-                <input type="range" name="number-range-let" val="10" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 12em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
+                <input type="range" name="number-range-let" val="10" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 20em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
             </div>
             <div class="input-group" title="Numbers">
                 <span class="input-group-text" id="button-addon1" style="background-color: rgb(220, 220, 220)">
@@ -56,7 +48,7 @@ jkbhvgufygnjbhdcn jefwd -->
                     </svg>
                 </span>
                 <input name="number-range-num" class="input-group-text" val="10" style="width: 3em; font-weight: bold;" onchange="sliderMove(this)">
-                <input type="range" name="number-range-num" val="10" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 12em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
+                <input type="range" name="number-range-num" val="10" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 20em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
             </div>
 
             <div class="input-group" title="Special symbols">
@@ -66,7 +58,7 @@ jkbhvgufygnjbhdcn jefwd -->
                     </svg>
                 </span>
                 <input name="number-range-sym" class="input-group-text" val="8" style="width: 3em; font-weight: bold;" onchange="sliderMove(this)">
-                <input type="range" name="number-range-sym" val="8" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 12em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
+                <input type="range" name="number-range-sym" val="8" min="0" max="16" class="slider-fill-50 form-range input-group-text" style="width: 20em; background-color: #0000" aria-label="0" aria-describedby="button-addon1" onchange="sliderMove(this);">
             </div>
 
         </div>
@@ -113,8 +105,10 @@ jkbhvgufygnjbhdcn jefwd -->
         
     </form>
 
-    <div class="container modal" id="eye-warning">
-        <div class="eye" style="display: none"></div>
+    <div class="container modal" id="eye-warning" style="display: none;">
+        <h1>Make sure nobody is watching!</h1>
+        <div class="eye"></div>
+        <button class = "btn btn-secondary rounded-pill" onclick="$($(this).parent()).fadeOut();">Ok, It's safe</button>
     </div>
     
     
